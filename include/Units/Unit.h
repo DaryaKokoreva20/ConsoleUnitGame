@@ -1,8 +1,10 @@
 #pragma once
 #include <string>
-#include "Interfaces/IUnit.h"
+#include "include/Interfaces/IUnit.h"
+#include "include/Interfaces/IPositionable.h"
 
-class Unit: public virtual IUnit {
+
+class Unit: public virtual IUnit, public virtual IPositionable {
 protected:
     int id;
     static int nextId;
@@ -13,6 +15,8 @@ protected:
     int defense;
     int price;
     bool isAlive;
+    int row = -1;
+    int col = -1;
 
 public:
     Unit(std::string unitName, int maxXP, int attackPower, int defense, int price);
@@ -34,4 +38,8 @@ public:
     void takeDamage(int damage) override;
     void healXP(int amount) override;
     virtual void attack() = 0;
+
+    // IPositionable:
+    void setPosition(int row, int col) override;
+    std::pair <int, int> getPosition() const override;
 };

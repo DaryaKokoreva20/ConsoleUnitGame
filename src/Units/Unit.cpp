@@ -53,3 +53,12 @@ void Unit::healXP(int amount) {
         std::cout << unitName << "[ID=" << id << "]" << " восстановил " << healedXP << " XP!\n";
     }
 }
+
+
+// IPositionable:
+void Unit::setPosition(int r, int c) {
+    row = r;
+    col = c;
+}
+
+std::pair <int, int> Unit::getPosition() const { return {row, col}; }
